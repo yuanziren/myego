@@ -1,10 +1,13 @@
-/.idea
-/ego-code-generate/target
-/ego-manager-web/target
-/ego-common/target
-/ego-rpc/target
-/ego-rpc/ego-rpc-mapper/target
-/ego-rpc/ego-rpc-pojo/target
-/ego-rpc/ego-rpc-service/target
-/ego-rpc/ego-rpc-service-impl/target
-ego.iml
+# Created by .ignore support plugin (hsz.mobi)
+.gitignore
+.idea/compiler.xml
+.idea/encodings.xml
+.idea/misc.xml
+.idea/workspace.xml
+ego-code-generate/target/
+ego-common/target/
+ego-manager-web/target/
+ego-rpc/ego-rpc-mapper/target/
+ego-rpc/ego-rpc-pojo/target/
+ego-rpc/ego-rpc-service-impl/target/
+ego-rpc/ego-rpc-service/target/

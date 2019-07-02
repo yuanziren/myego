@@ -161,9 +161,29 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
 
-
+  <sql id="deleteSql">
+    <foreach collection="ids" item="id" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </sql>
   <select id="queryItemsByParams" parameterType="com.shsxt.ego.rpc.query.ItemQuery" resultMap="BaseResultMap">
       select <include refid="Base_Column_List" />
       from tb_item
   </select>
+
+  <update id="updateItemStatusBatch" parameterType="map">
+    update tb_item
+    set status = #{type}
+    where id in
+    <foreach collection="ids" item="id" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </update>
+  
+  <update id="deleteItemBatch" parameterType="map">
+    update tb_item
+    set status = 3
+    where id in
+    <include refid="deleteSql"/>
+  </update>
 </mapper>
