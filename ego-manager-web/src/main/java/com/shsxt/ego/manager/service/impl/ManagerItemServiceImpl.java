@@ -6,6 +6,7 @@ import com.shsxt.ego.common.util.IDUtils;
 import com.shsxt.ego.manager.service.IManagerItemService;
 import com.shsxt.ego.rpc.pojo.TbItem;
 import com.shsxt.ego.rpc.pojo.TbItemDesc;
+import com.shsxt.ego.rpc.pojo.TbItemParamItem;
 import com.shsxt.ego.rpc.query.ItemQuery;
 import com.shsxt.ego.rpc.service.IItemService;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,7 @@ public class ManagerItemServiceImpl implements IManagerItemService {
     }
 
     @Override
-    public EgoResult saveItem(TbItem tbItem, String itemDesc) {
+    public EgoResult saveItem(TbItem tbItem, String itemDesc,String paramData) {
 
         // 设置商品id uuid
         Long itemId = IDUtils.genItemId();
@@ -57,7 +58,11 @@ public class ManagerItemServiceImpl implements IManagerItemService {
         /**
          * 商品规格记录 待实现
          */
-
-        return itemServiceProxy.saveItem(tbItem, tbItemDesc);
+        TbItemParamItem tbItemParamItem = new TbItemParamItem();
+        tbItemParamItem.setItemId(itemId);
+        tbItemParamItem.setParamData(paramData);
+        tbItemParamItem.setUpdated(time);
+        tbItemParamItem.setCreated(time);
+        return itemServiceProxy.saveItem(tbItem, tbItemDesc,tbItemParamItem);
     }
 }

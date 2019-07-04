@@ -5,7 +5,6 @@ import com.shsxt.ego.common.model.PageResult;
 import com.shsxt.ego.manager.service.IManagerItemService;
 import com.shsxt.ego.rpc.pojo.TbItem;
 import com.shsxt.ego.rpc.query.ItemQuery;
-import com.shsxt.ego.rpc.service.IItemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -54,9 +53,9 @@ public class ManagerItemController {
 
     @RequestMapping("item/save")
     @ResponseBody
-    public EgoResult saveItem(TbItem tbItem, String desc) {
-        return managerItemService.saveItem(tbItem,desc);
+    public EgoResult saveItem(TbItem item,String desc,String itemParams){
+        System.out.println(itemParams);
+        return managerItemService.saveItem(item,desc,itemParams);
     }
-
 
 }

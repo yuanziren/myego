@@ -9,12 +9,15 @@ import com.shsxt.ego.rpc.mapper.db.dao.TbItemMapper;
 import com.shsxt.ego.rpc.mapper.db.dao.TbItemParamItemMapper;
 import com.shsxt.ego.rpc.pojo.TbItem;
 import com.shsxt.ego.rpc.pojo.TbItemDesc;
+import com.shsxt.ego.rpc.pojo.TbItemParamItem;
 import com.shsxt.ego.rpc.query.ItemQuery;
 import com.shsxt.ego.rpc.service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class ItemServiceImpl implements IItemService {
@@ -75,9 +78,10 @@ public class ItemServiceImpl implements IItemService {
     }
 
     @Override
-    public EgoResult saveItem(TbItem item, TbItemDesc itemDesc) {
+    public EgoResult saveItem(TbItem item, TbItemDesc itemDesc, TbItemParamItem tbItemParamItem) {
         itemMapper.insertSelective(item);
         tbItemDescMapper.insertSelective(itemDesc);
+        tbItemParamItemMapper.insertSelective(tbItemParamItem);
         return new EgoResult();
     }
 }

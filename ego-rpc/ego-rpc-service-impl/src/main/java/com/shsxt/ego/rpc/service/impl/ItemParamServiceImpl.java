@@ -3,6 +3,7 @@ package com.shsxt.ego.rpc.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.shsxt.ego.common.model.EgoResult;
 import com.shsxt.ego.common.model.PageResult;
 import com.shsxt.ego.rpc.mapper.db.dao.TbItemParamMapper;
 import com.shsxt.ego.rpc.pojo.TbItemParam;
@@ -29,4 +30,22 @@ public class ItemParamServiceImpl implements IItemParamService {
         pageResult.setRows(pageInfo.getList());
         return pageResult;
     }
+
+    @Override
+    public TbItemParam queryItemParamByItemCatId(Long itemCatId) {
+        return tbItemParamMapper.queryItemParamByItemCatId(itemCatId);
+    }
+
+    @Override
+    public EgoResult saveItemParam(TbItemParam itemParam) {
+        tbItemParamMapper.insertSelective(itemParam);
+        return new EgoResult();
+    }
+
+    @Override
+    public EgoResult deleteItemParamBatch(Long[] ids) {
+        tbItemParamMapper.deleteItemParamBatch(ids);
+        return new EgoResult();
+    }
+
 }
