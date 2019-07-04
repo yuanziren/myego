@@ -37,8 +37,7 @@
         </javaClientGenerator>
 
 
-
-        <table tableName="tb_item_cat" domainObjectName="TbItemCat"
+        <table tableName="tb_item_param" domainObjectName="TbItemParam"
                enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

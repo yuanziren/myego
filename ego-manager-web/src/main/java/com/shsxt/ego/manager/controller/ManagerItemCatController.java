@@ -1,7 +1,7 @@
 package com.shsxt.ego.manager.controller;
 
 import com.shsxt.ego.rpc.dto.TreeDto;
-import com.shsxt.ego.rpc.service.ItemCatService;
+import com.shsxt.ego.rpc.service.IItemCatService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +14,7 @@ import java.util.List;
 public class ManagerItemCatController {
 
     @Resource
-    private ItemCatService itemCatServiceProxy;
+    private IItemCatService itemCatServiceProxy;
 
     @RequestMapping("item/cat/list")
     @ResponseBody

@@ -1,7 +1,7 @@
 package com.shsxt.ego.manager.controller;
 
 import com.shsxt.ego.rpc.pojo.TbUser;
-import com.shsxt.ego.rpc.service.IUserService;
+import com.shsxt.ego.rpc.service.IIUserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 public class UserController {
 
     @Resource
-    private IUserService userServiceProxy;
+    private IIUserService userServiceProxy;
 
     @RequestMapping("user/queryUserByUserId/{userId}")
     @ResponseBody

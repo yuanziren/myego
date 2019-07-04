@@ -22,9 +22,10 @@
 	<!-- 指定服务发布的协议：dubbo协议 -->
 	<!-- 指定服务发布的端口：10000 -->
 	<dubbo:protocol name="dubbo" port="20000" />
-	<dubbo:service interface="com.shsxt.ego.rpc.service.IUserService" ref="userServiceImpl"></dubbo:service>
+	<dubbo:service interface="com.shsxt.ego.rpc.service.IIUserService" ref="userServiceImpl"></dubbo:service>
 	<dubbo:service interface="com.shsxt.ego.rpc.service.IItemService" ref="itemServiceImpl"></dubbo:service>
-	<dubbo:service interface="com.shsxt.ego.rpc.service.ItemCatService" ref="itemCatServiceImpl"></dubbo:service>
-	<dubbo:service interface="com.shsxt.ego.rpc.service.ItemDescService" ref="itemDescServiceImpl"></dubbo:service>
+	<dubbo:service interface="com.shsxt.ego.rpc.service.IItemCatService" ref="itemCatServiceImpl"></dubbo:service>
+	<dubbo:service interface="com.shsxt.ego.rpc.service.IItemDescService" ref="itemDescServiceImpl"></dubbo:service>
+	<dubbo:service interface="com.shsxt.ego.rpc.service.IItemParamService" ref="itemParamServiceImpl"></dubbo:service>
 
 	 </beans>

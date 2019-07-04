@@ -4,7 +4,7 @@ import com.shsxt.ego.rpc.dto.TreeDto;
 
 import java.util.List;
 
-public interface ItemCatService {
+public interface IItemCatService {
 
     public List<TreeDto> queryItemCatsByParentId(Long id);
 }
