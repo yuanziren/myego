@@ -21,4 +21,6 @@ public class ManagerItemCatController {
     public List<TreeDto> queryItemCatsByParentId(@RequestParam(defaultValue = "0") Long id){
         return itemCatServiceProxy.queryItemCatsByParentId(id);
     }
+
+
 }

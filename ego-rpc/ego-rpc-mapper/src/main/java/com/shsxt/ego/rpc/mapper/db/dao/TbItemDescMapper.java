@@ -20,4 +20,5 @@ public interface TbItemDescMapper {
     int updateByPrimaryKey(TbItemDesc record);
 
     int deleteItemDescBatch(Map<String, Object> param);
+
 }

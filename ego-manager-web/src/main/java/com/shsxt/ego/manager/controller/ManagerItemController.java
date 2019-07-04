@@ -52,5 +52,11 @@ public class ManagerItemController {
         return managerItemService.deleteItemBatch(ids);
     }
 
+    @RequestMapping("item/save")
+    @ResponseBody
+    public EgoResult saveItem(TbItem tbItem, String desc) {
+        return managerItemService.saveItem(tbItem,desc);
+    }
+
 
 }

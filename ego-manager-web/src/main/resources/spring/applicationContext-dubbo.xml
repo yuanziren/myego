@@ -20,5 +20,6 @@
   	<dubbo:reference interface="com.shsxt.ego.rpc.service.IUserService" id="userServiceProxy"></dubbo:reference>
     <dubbo:reference interface="com.shsxt.ego.rpc.service.IItemService" id="itemServiceProxy"></dubbo:reference>
     <dubbo:reference interface="com.shsxt.ego.rpc.service.ItemCatService" id="ItemCatServiceProxy"></dubbo:reference>
+    <dubbo:reference interface="com.shsxt.ego.rpc.service.ItemDescService" id="itemDescServiceProxy"></dubbo:reference>
 
 </beans>

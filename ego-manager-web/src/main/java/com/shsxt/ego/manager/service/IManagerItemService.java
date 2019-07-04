@@ -23,4 +23,6 @@ public interface IManagerItemService {
     public EgoResult instock(Long[] ids);
 
     public EgoResult deleteItemBatch(Long[] ids);
+
+    EgoResult saveItem(TbItem tbItem, String itemDesc);
 }

@@ -25,5 +25,6 @@
 	<dubbo:service interface="com.shsxt.ego.rpc.service.IUserService" ref="userServiceImpl"></dubbo:service>
 	<dubbo:service interface="com.shsxt.ego.rpc.service.IItemService" ref="itemServiceImpl"></dubbo:service>
 	<dubbo:service interface="com.shsxt.ego.rpc.service.ItemCatService" ref="itemCatServiceImpl"></dubbo:service>
+	<dubbo:service interface="com.shsxt.ego.rpc.service.ItemDescService" ref="itemDescServiceImpl"></dubbo:service>
 
 	 </beans>

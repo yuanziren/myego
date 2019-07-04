@@ -1,6 +1,7 @@
 package com.shsxt.ego.rpc.service;
 
 import com.shsxt.ego.common.model.EgoResult;
+import com.shsxt.ego.rpc.pojo.TbItemDesc;
 import com.shsxt.ego.rpc.query.ItemQuery;
 import com.shsxt.ego.common.model.PageResult;
 import com.shsxt.ego.rpc.pojo.TbItem;
@@ -20,4 +21,6 @@ public interface IItemService {
     public EgoResult updateItemStatusBatch(Long[] ids,int type);
 
     public EgoResult deleteItemBatch(Long[] ids);
+
+    public EgoResult saveItem(TbItem item, TbItemDesc itemDesc);
 }
