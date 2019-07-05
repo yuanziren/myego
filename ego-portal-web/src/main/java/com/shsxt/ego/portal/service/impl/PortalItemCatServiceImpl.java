@@ -18,6 +18,8 @@ public class PortalItemCatServiceImpl implements IPortalItemCatService {
     @Resource
     private IItemCatService iItemCatServiceProxy;
 
+
+
     @Override
     public Map<String ,Object> getAllItemCats() {
         List<TbItemCat> list = iItemCatServiceProxy.queryAllItemCats();
