@@ -2,6 +2,7 @@ package com.shsxt.ego.rpc.service.impl;
 
 import com.shsxt.ego.rpc.dto.TreeDto;
 import com.shsxt.ego.rpc.mapper.db.dao.TbItemCatMapper;
+import com.shsxt.ego.rpc.pojo.TbItemCat;
 import com.shsxt.ego.rpc.service.IItemCatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,5 +18,10 @@ public class ItemCatServiceImpl implements IItemCatService {
     @Override
     public List<TreeDto> queryItemCatsByParentId(Long id) {
         return itemCatMapper.queryItemCatsByParentId(id);
+    }
+
+    @Override
+    public List<TbItemCat> queryAllItemCats() {
+        return itemCatMapper.queryAllItemCats();
     }
 }

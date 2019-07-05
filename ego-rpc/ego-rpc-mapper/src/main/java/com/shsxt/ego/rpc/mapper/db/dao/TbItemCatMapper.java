@@ -20,4 +20,7 @@ public interface TbItemCatMapper {
 
 
     List<TreeDto> queryItemCatsByParentId(Long id);
+
+    List<TbItemCat> queryAllItemCats();
+
 }
