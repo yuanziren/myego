@@ -190,6 +190,14 @@
     where category_id=#{categoryId}
   </select>
 
+  <delete id="deleteBatch">
+    delete from tb_content
+    where id in
+    <foreach collection="array" open="(" separator="," close=")" item="item">
+      #{item}
+    </foreach>
+  </delete>
+
   <select id="queryContentsByCategoryId" parameterType="long" resultMap="ResultMapWithBLOBs" >
     select
     <include refid="Base_Column_List" />

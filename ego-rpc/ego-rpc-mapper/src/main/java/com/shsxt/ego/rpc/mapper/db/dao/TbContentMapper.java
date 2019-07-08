@@ -23,4 +23,6 @@ public interface TbContentMapper {
     List<TbContent> queryContentsByParams(ContentQuery contentQuery);
 
     List<TbContent> queryContentsByCategoryId(Long cid);
+
+    int deleteBatch(Long[] ids);
 }

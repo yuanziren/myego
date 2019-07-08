@@ -1,5 +1,6 @@
 package com.shsxt.ego.manager.controller;
 
+import com.shsxt.ego.common.model.EgoResult;
 import com.shsxt.ego.common.model.PageResult;
 import com.shsxt.ego.manager.service.IManagerContentService;
 import com.shsxt.ego.rpc.pojo.TbContent;
@@ -20,4 +21,23 @@ public class ManagerContentController {
     public PageResult<TbContent> queryContentsByParams(ContentQuery contentQuery){
         return iManagerContentService.queryContentsByParams(contentQuery);
     }
+
+    @RequestMapping("/content/delete")
+    @ResponseBody
+    public EgoResult delete(Long[] ids) {
+        return iManagerContentService.delete(ids);
+    }
+
+    @RequestMapping("/content/save")
+    @ResponseBody
+    public EgoResult save(TbContent content){
+        return iManagerContentService.save(content);
+    }
+
+    @RequestMapping("rest/content/edit")
+    @ResponseBody
+    public EgoResult update(TbContent content){
+        return iManagerContentService.update(content);
+    }
+
 }

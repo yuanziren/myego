@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ContentServiceImpl implements IContentService {
@@ -79,12 +80,30 @@ public class ContentServiceImpl implements IContentService {
         return pictures;
     }
 
-    public EgoResult saveContnt(TbContent content) {
-        contentMapper.insertSelective(content);
+    @Override
+    public EgoResult delete(Long[] ids) {
+        contentMapper.deleteBatch(ids);
+        /**
+         * 清除缓存key
+         *     模式匹配广告内容key
+         */
+        Set<String> keys = redisTemplate.keys("content::*");
+        redisTemplate.delete(keys);
         return new EgoResult();
     }
 
-    public EgoResult updateContent(TbContent content) {
+    public EgoResult save(TbContent content) {
+        contentMapper.insertSelective(content);
+        /**
+         * 清除缓存key
+         *     模式匹配广告内容key
+         */
+        Set<String> keys = redisTemplate.keys("content::*");
+        redisTemplate.delete(keys);
+        return new EgoResult();
+    }
+
+    public EgoResult update(TbContent content) {
         contentMapper.updateByPrimaryKeySelective(content);
 
         /**
