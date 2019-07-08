@@ -189,4 +189,13 @@
     from tb_content
     where category_id=#{categoryId}
   </select>
+
+  <select id="queryContentsByCategoryId" parameterType="long" resultMap="ResultMapWithBLOBs" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_content
+    where category_id=#{cid}
+  </select>
 </mapper>

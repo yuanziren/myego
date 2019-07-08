@@ -18,6 +18,6 @@
    
    <!-- spring容器中存在一个远程服务的代理对象 -->
     <dubbo:reference interface="com.shsxt.ego.rpc.service.IItemCatService" id="itemCatServiceProxy"></dubbo:reference>
-<!--    <dubbo:reference interface="com.shsxt.ego.rpc.service.IContentService" id="contentServiceProxy"></dubbo:reference>-->
+    <dubbo:reference interface="com.shsxt.ego.rpc.service.IContentService" id="contentServiceProxy"></dubbo:reference>
 
 </beans>

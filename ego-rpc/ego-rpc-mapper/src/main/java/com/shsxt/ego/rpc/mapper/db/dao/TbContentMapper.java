@@ -21,4 +21,6 @@ public interface TbContentMapper {
     int updateByPrimaryKey(TbContent record);
 
     List<TbContent> queryContentsByParams(ContentQuery contentQuery);
+
+    List<TbContent> queryContentsByCategoryId(Long cid);
 }

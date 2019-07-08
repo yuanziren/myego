@@ -1,6 +1,8 @@
 package com.shsxt.ego.common.model;
 
-public class PictureResult {
+import java.io.Serializable;
+
+public class PictureResult implements Serializable {
     private Integer error; //状态 1 失败 0 成功
     private String url; //上传图片后，图片在服务器的 url
     private String message;//响应到客户端的提示消息
