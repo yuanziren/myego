@@ -24,7 +24,6 @@ public class PortalController {
     @ResponseBody
     public String getAllCats(){
         Map<String,Object> map=iPortalItemCatService.getAllItemCats();
-        System.out.println(map);
         return  JsonUtils.objectToJson(map);
     }
 

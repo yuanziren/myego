@@ -3,14 +3,18 @@ package com.shsxt.ego.rpc.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.shsxt.ego.common.model.BigPicture;
+import com.shsxt.ego.common.model.EgoResult;
 import com.shsxt.ego.common.model.PageResult;
 import com.shsxt.ego.rpc.mapper.db.dao.TbContentMapper;
 import com.shsxt.ego.rpc.pojo.TbContent;
 import com.shsxt.ego.rpc.query.ContentQuery;
 import com.shsxt.ego.rpc.service.IContentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,10 +22,27 @@ import java.util.List;
 public class ContentServiceImpl implements IContentService {
     @Autowired
     private TbContentMapper contentMapper;
+
+    @Resource
+    private RedisTemplate<String,Object> redisTemplate;
+
+    @Resource(name = "redisTemplate")
+    private ValueOperations<String,Object> valueOperations;
+
     @Override
     public PageResult<TbContent> queryContentsByParams(ContentQuery contentQuery) {
         PageHelper.startPage(contentQuery.getPage(), contentQuery.getRows());
-        List<TbContent> itemList= contentMapper.queryContentsByParams(contentQuery);
+        List<TbContent> itemList = null;
+        String key = "content::queryContentsByParams::cid::"+contentQuery.getCategoryId()+
+                "::page::"+contentQuery.getPage()+"::rows::"+contentQuery.getRows();
+        if (redisTemplate.hasKey(key)){
+            itemList = (List<TbContent>) valueOperations.get(key);
+            if (null != itemList && itemList.size() >0){
+                valueOperations.set(key,itemList);
+            }
+        }else {
+            itemList = contentMapper.queryContentsByParams(contentQuery);
+        }
         PageInfo<TbContent> pageInfo =new PageInfo<>(itemList);
         PageResult<TbContent> pageResult =new PageResult<>();
         pageResult.setTotal(pageInfo.getTotal());
@@ -32,7 +53,17 @@ public class ContentServiceImpl implements IContentService {
     @Override
     public List<BigPicture> queryContentsByCategoryId(Long cid) {
         List<BigPicture> pictures = null;
-        List<TbContent> contents = contentMapper.queryContentsByCategoryId(cid);
+        List<TbContent> contents = null;
+        String key = "content::queryContentsByCategoryId::cid::"+cid;
+        if (redisTemplate.hasKey(key)){
+            contents = (List<TbContent>) valueOperations.get(key);
+        }else {
+            contents = contentMapper.queryContentsByCategoryId(cid);
+            if (null != contents && contents.size() >0){
+                valueOperations.set(key,contents);
+            }
+        }
+
         if (null != contents && contents.size() >0){
             pictures = new ArrayList<>();
             List<BigPicture> finalPictures = pictures;
@@ -46,5 +77,26 @@ public class ContentServiceImpl implements IContentService {
             });
         }
         return pictures;
+    }
+
+    public EgoResult saveContnt(TbContent content) {
+        contentMapper.insertSelective(content);
+        return new EgoResult();
+    }
+
+    public EgoResult updateContent(TbContent content) {
+        contentMapper.updateByPrimaryKeySelective(content);
+
+        /**
+         * 缓存同步问题
+         *  清除多个缓存key
+         */
+       /* String key = "content::queryContentsByCategoryId::cid::" + content.getCategoryId();
+        //清除缓存key
+        redisTemplate.delete(key);*/
+
+       //匹配指定key 缓存同步
+        redisTemplate.delete(redisTemplate.keys("content::*"));
+        return new EgoResult();
     }
 }
